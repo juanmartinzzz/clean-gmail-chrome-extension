@@ -1,0 +1,303 @@
+/* Sofia Gmail Simple — everything is scoped under html.sg (added by content.js).
+   The settings panel drives the --sg-* variables and the sg-* toggle classes on <html>.
+   Gmail's class names are obfuscated and change without notice; prefer role/gh/aria
+   selectors, and expect to refresh the class-based ones now and then. */
+
+html.sg {
+  --sg-text: #1f1f1f;
+  --sg-row: 60px;
+  --sg-avatar-size: 40px;
+}
+
+html.sg.sg-compact {
+  --sg-row: 44px;
+  --sg-avatar-size: 32px;
+}
+
+/* ---------- Page chrome ---------- */
+
+html.sg body,
+html.sg .wl,
+html.sg .nH.bkL,
+html.sg [role='main'],
+html.sg .aeF,
+html.sg [gh='tl'],
+html.sg .ae4 {
+  background: #fff !important;
+}
+
+html.sg [role='main'] {
+  border-radius: 0 !important;
+  margin: 0 !important;
+}
+
+/* App rail (Mail / Chat / Meet). Gmail also shows it as the collapsed menu, so with it
+   hidden the hamburger simply toggles between the native sidebar and no sidebar. */
+html.sg .aeN {
+  display: none !important;
+}
+
+/* Compose becomes a round button in the bottom-right corner. */
+html.sg .aic {
+  visibility: visible;
+  position: fixed;
+  right: 32px;
+  bottom: 32px;
+  z-index: 50;
+  padding: 0 !important;
+}
+
+html.sg .aic .T-I-KE {
+  width: 56px !important;
+  min-width: 0 !important;
+  height: 56px !important;
+  padding: 0 !important;
+  border-radius: 50% !important;
+  background: #fff !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2), 0 4px 12px rgba(0, 0, 0, 0.12) !important;
+  font-size: 0 !important;
+  justify-content: center;
+}
+
+/* Right side panel (Calendar, Keep, Tasks). */
+html.sg .bAw {
+  display: none !important;
+}
+
+/* ---------- Header ---------- */
+
+html.sg header {
+  border-bottom: 1px solid #ececec;
+}
+
+/* Gmail logo, Gemini entry points, and the Workspace logo next to the avatar. */
+html.sg header a[aria-label='Gmail'],
+html.sg header .bGJ,
+html.sg header [aria-label='Ask Gemini'],
+html.sg header img:not(.gbii) {
+  display: none !important;
+}
+
+/* The account pill: drop its outline and the empty slot the Workspace logo leaves behind. */
+html.sg header div:has(> div > div > a[aria-label^='Google Account']) {
+  padding-left: 0 !important;
+  border-color: transparent !important;
+  background: none !important;
+}
+
+html.sg header div:has(> div > div > a[aria-label^='Google Account']) > div:not(:has(a)) {
+  display: none !important;
+}
+
+html.sg header form[role='search'] {
+  max-width: 700px;
+  margin: 0 auto;
+  border-radius: 28px;
+}
+
+html.sg header [aria-label='Advanced search options'] {
+  display: none !important;
+}
+
+/* Status, Support, Settings, Studio and the apps grid only show while hovering the header. */
+html.sg header :is(
+  [aria-label^='Status:'],
+  [aria-label='Support'],
+  [aria-label='Settings'],
+  [aria-label='Studio'],
+  [aria-label='Google apps']
+) {
+  opacity: 0;
+  transition: opacity 0.15s;
+}
+
+html.sg.sg-icons-always header :is(
+  [aria-label^='Status:'],
+  [aria-label='Support'],
+  [aria-label='Settings'],
+  [aria-label='Studio'],
+  [aria-label='Google apps']
+),
+html.sg header:hover :is(
+  [aria-label^='Status:'],
+  [aria-label='Support'],
+  [aria-label='Settings'],
+  [aria-label='Studio'],
+  [aria-label='Google apps']
+) {
+  opacity: 1;
+}
+
+/* ---------- Thread list ---------- */
+
+html.sg [gh='tm'],
+html.sg [gh='tl'] {
+  max-width: var(--sg-width, 760px);
+  margin: 0 auto !important;
+}
+
+/* Section headers: "Unread", "Everything else". */
+html.sg .Wg {
+  margin-top: 24px;
+  border: 0 !important;
+  box-shadow: none !important;
+  background: transparent !important;
+}
+
+html.sg .Wg .qh {
+  font: 400 20px/28px 'Google Sans', Roboto, sans-serif !important;
+  color: var(--sg-text) !important;
+}
+
+/* Rows become flex lines so cells can be reordered and spaced freely. */
+html.sg [gh='tl'] table.F,
+html.sg [gh='tl'] table.F > tbody {
+  display: block;
+  width: 100%;
+  border: 0 !important;
+}
+
+html.sg [gh='tl'] table.F > colgroup {
+  display: none;
+}
+
+html.sg tr.zA {
+  display: flex !important;
+  align-items: center;
+  position: relative;
+  min-height: var(--sg-row);
+  padding: 0 12px;
+  border-radius: calc(var(--sg-row) / 2);
+  background: #fff !important;
+  box-shadow: none !important;
+  border: 0 !important;
+}
+
+html.sg tr.zA:hover,
+html.sg tr.zA.btb,
+html.sg tr.zA.x7 {
+  background: var(--sg-hover, #f2f2f2) !important;
+  box-shadow: none !important;
+}
+
+html.sg tr.zA > td {
+  border: 0 !important;
+  background: transparent !important;
+  height: auto !important;
+}
+
+/* Spacer always; checkbox and snippet unless turned on in settings. */
+html.sg tr.zA > td.PF,
+html.sg:not(.sg-checkboxes) tr.zA > td.oZ-x3,
+html.sg:not(.sg-snippets) tr.zA .y2 {
+  display: none !important;
+}
+
+/* Order: avatar + sender, importance marker, subject, extras, date / hover actions, star. */
+html.sg tr.zA > td.yX {
+  order: 1;
+  flex: 0 0 clamp(150px, 28%, 280px);
+  display: flex !important;
+  align-items: center;
+  min-width: 0;
+  padding: 0 8px 0 0 !important;
+}
+
+html.sg tr.zA > td.WA {
+  order: 2;
+  flex: 0 0 36px;
+}
+
+html.sg tr.zA > td.a4W {
+  order: 3;
+  flex: 1 1 auto;
+  min-width: 0;
+  padding: 6px 0 !important;
+}
+
+html.sg tr.zA > td.byZ,
+html.sg tr.zA > td.yf {
+  order: 4;
+  flex: 0 0 auto;
+}
+
+html.sg tr.zA > td.xW,
+html.sg tr.zA > td.bq4 {
+  order: 5;
+  flex: 0 0 auto;
+  padding: 0 12px 0 16px !important;
+}
+
+html.sg tr.zA > td.apU {
+  order: 6;
+  flex: 0 0 auto;
+}
+
+html.sg tr.zA > td:last-child:not([class]) {
+  display: none;
+}
+
+/* Letter avatar. */
+html.sg td.yX[data-sg-initial]::before {
+  content: attr(data-sg-initial);
+  flex: 0 0 var(--sg-avatar-size);
+  height: var(--sg-avatar-size);
+  margin-right: 16px;
+  border-radius: 50%;
+  background: var(--sg-avatar, #78909c);
+  color: #fff;
+  font: 500 calc(var(--sg-avatar-size) * 0.42) / var(--sg-avatar-size) 'Google Sans', Roboto, sans-serif;
+  text-align: center;
+}
+
+html.sg.sg-no-avatars td.yX::before {
+  display: none;
+}
+
+html.sg tr.zA .yX .yW,
+html.sg tr.zA .y6,
+html.sg tr.zA .y2,
+html.sg tr.zA .xW span {
+  font-size: var(--sg-list-text, 15px) !important;
+  font-family: 'Google Sans', Roboto, sans-serif !important;
+}
+
+/* Date-group label ("Yesterday", "This month", ...) above the first row of each group. */
+html.sg:not(.sg-no-groups) tr.zA[data-sg-group] {
+  margin-top: 44px;
+}
+
+html.sg:not(.sg-no-groups) tr.zA[data-sg-group]::before {
+  content: attr(data-sg-group);
+  position: absolute;
+  top: -30px;
+  left: 12px;
+  font: 500 12px/16px 'Google Sans', Roboto, sans-serif;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--sg-text);
+  pointer-events: none;
+}
+
+/* ---------- Thread view ---------- */
+
+html.sg [role='main'] .iY {
+  max-width: var(--sg-width, 760px);
+  margin: 0 auto !important;
+}
+
+html.sg [role='main'] .hP {
+  font: 400 26px/34px 'Google Sans', Roboto, sans-serif !important;
+}
+
+/* "Summarize this email" (Gemini) chip. */
+html.sg [role='main'] .DC5CAd {
+  display: none !important;
+}
+
+/* Email body text size. Only plain-text and Gmail-composed blocks follow it: forcing every
+   descendant would flatten the layout of designed HTML emails. */
+html.sg [role='main'] .ii.gt .a3s,
+html.sg [role='main'] .ii.gt .a3s div[dir='ltr'] {
+  font-size: var(--sg-email-text, 14px) !important;
+}

@@ -1,0 +1,23 @@
+{
+  "manifest_version": 3,
+  "name": "Sofia Gmail Simple",
+  "version": "0.2.0",
+  "description": "A calmer, centered, visual-only restyle of Gmail.",
+  "content_scripts": [
+    {
+      "matches": [
+        "https://mail.google.com/*"
+      ],
+      "css": [
+        "content.css"
+      ],
+      "js": [
+        "content.js"
+      ],
+      "run_at": "document_start"
+    }
+  ],
+  "permissions": [
+    "storage"
+  ]
+}
