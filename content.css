@@ -1,4 +1,4 @@
-/* Sofia Gmail Simple — everything is scoped under html.sg (added by content.js).
+/* Clean Gmail — everything is scoped under html.sg (added by content.js).
    The settings panel drives the --sg-* variables and the sg-* toggle classes on <html>.
    Gmail's class names are obfuscated and change without notice; prefer role/gh/aria
    selectors, and expect to refresh the class-based ones now and then. */

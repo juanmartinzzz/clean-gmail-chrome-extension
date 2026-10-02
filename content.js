@@ -324,7 +324,7 @@
       h('div', { class: 'foot' }, [h('button', { type: 'button', class: 'link', onclick: () => { settings = { ...DEFAULTS }; apply(); chrome.storage.sync.set(DEFAULTS); } }, 'Reset to defaults')]),
     ]);
 
-    const pill = h('button', { type: 'button', class: 'pill', title: 'Simple Gmail settings', 'aria-expanded': 'false', onclick: () => toggle() }, [gearIcon(), 'Customize']);
+    const pill = h('button', { type: 'button', class: 'pill', title: 'Clean Gmail settings', 'aria-expanded': 'false', onclick: () => toggle() }, [gearIcon(), 'Customize']);
 
     function toggle(open = box.hidden) {
       box.hidden = !open;

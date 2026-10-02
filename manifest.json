@@ -1,6 +1,6 @@
 {
   "manifest_version": 3,
-  "name": "Sofia Gmail Simple",
+  "name": "Clean Gmail",
   "version": "0.2.0",
   "description": "A calmer, centered, visual-only restyle of Gmail.",
   "content_scripts": [
